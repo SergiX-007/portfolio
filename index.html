@@ -1,1057 +1,752 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html class="no-js" lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | ASONDRAZANIAINA Harena Asondrotra Sergio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Borel&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --dark-bg: #121212;
-            --dark-card: #1e1e1e;
-            --dark-text: #e0e0e0;
-            --accent-blue: #f7d04f;
-            --accent-blue-dark: #6e3f00;
-            --light-gray: #b0b0b0;
-            --border-radius: 8px;
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            height: 100%;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--dark-text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Borel', cursive;
-            color: var(--accent-blue);
-            margin-bottom: 1rem;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Navigation */
-        nav {
-            background-color: rgba(18, 18, 18, 0.95);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        nav .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Borel', cursive;
-            font-size: 1.5rem;
-            color: var(--accent-blue);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 30px;
-        }
-
-        .nav-links a {
-            color: var(--dark-text);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-blue);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--accent-blue);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-links a.active {
-            color: var(--accent-blue);
-        }
-
-        .nav-links a.active::after {
-            width: 100%;
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Sections générales - OCCUPENT TOUT L'ÉCRAN */
-        section {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            padding: 100px 0;
-            display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            overflow-y: auto;
-        }
-
-        section.active {
-            display: block;
-            opacity: 1;
-            position: relative;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-            font-size: 2.5rem;
-        }
-
-        /* Section Accueil */
-        #accueil {
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, rgba(18, 18, 18, 0.9) 0%, rgba(30, 30, 30, 0.8) 100%);
-        }
-
-        .hero {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            height: 100%;
-        }
-
-        .photo-container {
-            flex: 0 0 40%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .photo-placeholder {
-            width: 100%;
-            height: 100%;
-          
-     
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            font-size: 1rem;
-        
-        }
-
-        .hero-content {
-            flex: 0 0 55%;
-        }
-
-        .hero-content h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            color: var(--light-gray);
-        }
-
-        .welcome-message {
-            background-color: var(--dark-card);
-            padding: 30px;
-            border-radius: var(--border-radius);
-            border-left: 4px solid var(--accent-blue);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Section À propos */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-
-        .about-text {
-            background-color: var(--dark-card);
-            padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .about-details {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
-        .detail-card {
-            background-color: var(--dark-card);
-            padding: 20px;
-            border-radius: var(--border-radius);
-            border-left: 4px solid var(--accent-blue);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .detail-card h3 {
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .detail-card h3 i {
-            margin-right: 10px;
-            font-size: 1.2rem;
-        }
-
-        .detail-card ul {
-            list-style-position: inside;
-            margin-left: 10px;
-        }
-
-        .detail-card li {
-            margin-bottom: 8px;
-        }
-
-        .map-container {
-            height: 300px;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            margin-top: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Section Compétences */
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .skill-category {
-            background-color: var(--dark-card);
-            padding: 25px;
-            border-radius: var(--border-radius);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .skill-category h3 {
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .skill-category h3 i {
-            margin-right: 10px;
-            font-size: 1.3rem;
-        }
-
-        .skill-item {
-            margin-bottom: 20px;
-        }
-
-        .skill-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-        }
-
-        .skill-name {
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-        }
-
-        .skill-name i {
-            margin-right: 10px;
-            font-size: 1.2rem;
-            color: var(--accent-blue);
-        }
-
-        .skill-bar {
-            height: 10px;
-            background-color: #333;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background-color: var(--accent-blue);
-            border-radius: 5px;
-            transition: width 1s ease-in-out;
-        }
-
-        /* Logos des applications */
-        .app-logos {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .app-logo {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #333;
-            border-radius: 8px;
-            color: var(--accent-blue);
-            font-size: 1.2rem;
-            transition: var(--transition);
-        }
-
-        .app-logo:hover {
-            transform: translateY(-5px);
-            background-color: var(--accent-blue);
-            color: var(--dark-bg);
-        }
-
-        /* Section Contact */
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-
-        .contact-info {
-            background-color: var(--dark-card);
-            padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .contact-item i {
-            font-size: 1.2rem;
-            color: var(--accent-blue);
-            margin-right: 15px;
-            width: 30px;
-        }
-
-        .social-links {
-            display: flex;
-            margin-top: 30px;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: #333;
-            border-radius: 50%;
-            margin-right: 15px;
-            color: var(--dark-text);
-            transition: var(--transition);
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent-blue);
-            transform: translateY(-5px);
-        }
-
-        .contact-form {
-            background-color: var(--dark-card);
-            padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            background-color: #333;
-            border: 1px solid #444;
-            border-radius: var(--border-radius);
-            color: var(--dark-text);
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--accent-blue);
-        }
-
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: var(--accent-blue);
-            color: #121212;
-            border: none;
-            border-radius: var(--border-radius);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .btn:hover {
-            background-color: var(--accent-blue-dark);
-            transform: translateY(-3px);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark-card);
-            padding: 40px 0 20px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .footer-logo {
-            font-family: 'Borel', cursive;
-            font-size: 1.5rem;
-            color: var(--accent-blue);
-        }
-
-        .footer-contact {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .footer-contact a {
-            color: var(--dark-text);
-            text-decoration: none;
-            margin-bottom: 5px;
-            transition: var(--transition);
-        }
-
-        .footer-contact a:hover {
-            color: var(--accent-blue);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #333;
-            color: var(--light-gray);
-            font-size: 0.9rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .photo-container {
-                margin-bottom: 40px;
-            }
-            
-            .about-content, .contact-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-            
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background-color: var(--dark-bg);
-                flex-direction: column;
-                align-items: center;
-                padding-top: 50px;
-                transition: var(--transition);
-            }
-            
-            .nav-links.active {
-                left: 0;
-            }
-            
-            .nav-links li {
-                margin: 15px 0;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .footer-contact {
-                margin-top: 20px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .skills-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#000000">
+<meta name="description" content="Portfolio de ASONDRAZANIAINA Harena Asondrotra Sergio — Informaticien, Designer, Ile Maurice">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Sergio">
+<title>Sergio — Portfolio</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --CF:"Cormorant Garamond",serif;
+  --SF:"DM Sans",sans-serif;
+  --MF:"JetBrains Mono",monospace;
+  --bg:#000;--bg2:#080808;--bg3:#111;--bg4:#1a1a1a;
+  --t1:#f0f0f0;--t2:#c0c0c0;--t3:#888;
+  --brd:rgba(255,255,255,.1);--brd2:rgba(255,255,255,.22);
+  --acc:#fff;--acc-inv:#000;
+  --ease:cubic-bezier(.25,.46,.45,.94);
+  --eout:cubic-bezier(.16,1,.3,1);
+  --spring:cubic-bezier(.34,1.56,.64,1)
+}
+html.light{
+  --bg:#fff;--bg2:#f5f5f5;--bg3:#eee;--bg4:#e0e0e0;
+  --t1:#0a0a0a;--t2:#3a3a3a;--t3:#666;
+  --brd:rgba(0,0,0,.1);--brd2:rgba(0,0,0,.22);
+  --acc:#000;--acc-inv:#fff
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--SF);background:var(--bg);color:var(--t1);overflow-x:hidden;cursor:none;transition:background .35s,color .35s}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+ul{list-style:none}
+button{cursor:none;font-family:var(--SF);border:none;background:none}
+.no-js .reveal{opacity:1!important;transform:none!important}
+
+/* CURSOR */
+#cd{position:fixed;width:5px;height:5px;background:var(--acc);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .3s}
+#cr{position:fixed;width:38px;height:38px;border:1px solid rgba(128,128,128,.4);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .25s var(--ease),height .25s var(--ease)}
+body.hov #cd{width:8px;height:8px}
+body.hov #cr{width:56px;height:56px}
+@media(hover:none){#cd,#cr{display:none}body{cursor:auto}}
+
+/* LOADER */
+#loader{position:fixed;inset:0;background:var(--bg);z-index:99990;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;transition:opacity .9s var(--ease),visibility .9s}
+#loader.out{opacity:0;visibility:hidden;pointer-events:none}
+.ld-wrap{position:relative;width:120px;height:120px}
+.ld-ring{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.ld-ring circle{stroke:var(--acc);stroke-width:.8;fill:none;stroke-linecap:round;stroke-dasharray:339.29;stroke-dashoffset:339.29;animation:ld-draw 4s linear forwards}
+@keyframes ld-draw{to{stroke-dashoffset:0}}
+.ld-logo-c{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.ld-logo-c svg{width:56px;height:62px;color:var(--acc)}
+.ld-txt{font-family:var(--MF);font-size:.58rem;letter-spacing:.38em;color:var(--t3);text-transform:uppercase}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:24px 60px;display:flex;align-items:center;justify-content:space-between;transition:padding .4s var(--ease),background .4s,border-bottom .4s}
+nav.scr{padding:14px 60px;background:rgba(0,0,0,.87);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--brd)}
+html.light nav.scr{background:rgba(255,255,255,.87)}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:var(--CF);font-size:1.3rem;font-weight:500;letter-spacing:.06em;color:var(--t1)}
+.nav-logo svg{width:26px;height:29px;color:var(--acc);flex-shrink:0}
+.nav-links{display:flex;gap:36px}
+.nav-links a{font-family:var(--MF);font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);position:relative;transition:color .3s}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--acc);transition:width .4s var(--ease)}
+.nav-links a:hover,.nav-links a.act{color:var(--t1)}
+.nav-links a:hover::after,.nav-links a.act::after{width:100%}
+.nav-ctrl{display:flex;gap:10px;align-items:center}
+.nav-btn{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid var(--brd);color:var(--t3);font-family:var(--MF);font-size:.58rem;letter-spacing:.06em;transition:border-color .3s,color .3s}
+.nav-btn:hover{border-color:var(--brd2);color:var(--t1)}
+.burger{display:none;flex-direction:column;gap:5px;padding:4px;width:34px;height:34px;align-items:center;justify-content:center}
+.burger span{display:block;width:20px;height:1px;background:var(--t1);transition:transform .4s var(--ease),opacity .3s}
+.burger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mob-nav{position:fixed;inset:0;background:var(--bg);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:40px;opacity:0;visibility:hidden;transition:opacity .5s var(--ease),visibility .5s}
+.mob-nav.open{opacity:1;visibility:visible}
+.mob-nav a{font-family:var(--CF);font-size:2.6rem;font-weight:300;color:var(--t3);transition:color .3s}
+.mob-nav a:hover{color:var(--t1)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .85s var(--eout),transform .85s var(--eout)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
+
+/* SECTION BASE */
+section{min-height:100vh;padding:120px 60px;position:relative}
+.s-label{font-family:var(--MF);font-size:.6rem;letter-spacing:.28em;color:var(--t3);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:14px}
+.s-label::before{content:'';display:inline-block;width:24px;height:1px;background:var(--t3)}
+.s-title{font-family:var(--CF);font-size:clamp(2.2rem,4.5vw,3.8rem);font-weight:400;line-height:1.1;margin-bottom:56px;color:var(--t1)}
+
+/* HERO */
+#hero{padding:0;min-height:100vh;display:flex;align-items:center;overflow:hidden;position:relative;background:var(--bg)}
+#ptc{position:absolute;inset:0;z-index:0}
+.hero-gb{position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(var(--brd) 1px,transparent 1px),linear-gradient(90deg,var(--brd) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 60% 70% at 50% 50%,black,transparent);-webkit-mask-image:radial-gradient(ellipse 60% 70% at 50% 50%,black,transparent);opacity:.5}
+.hero-inner{position:relative;z-index:1;width:100%;max-width:1400px;margin:0 auto;padding:80px 60px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;min-height:100vh}
+.hero-content{display:flex;flex-direction:column;gap:22px}
+.hero-tag{font-family:var(--MF);font-size:.63rem;letter-spacing:.28em;color:var(--t3);text-transform:uppercase;display:flex;align-items:center;gap:12px;animation:fadeUp .8s var(--eout) .6s both}
+.hero-tag::before{content:'';display:inline-block;width:20px;height:1px;background:var(--t3)}
+.hero-name{font-family:var(--CF);font-size:clamp(2rem,4vw,4.4rem);font-weight:500;line-height:1.05;animation:fadeUp .8s var(--eout) .8s both}
+.hero-name .sub{font-weight:300;color:var(--t2);display:block}
+.hero-name .it{font-style:italic;display:block}
+.glitch-w{position:relative;display:inline-block}
+.glitch-w::before,.glitch-w::after{content:attr(data-t);position:absolute;top:0;left:0;width:100%;height:100%;color:var(--t1)}
+.glitch-w::before{animation:g1 10s infinite;clip-path:polygon(0 0,100% 0,100% 42%,0 42%)}
+.glitch-w::after{animation:g2 10s infinite;clip-path:polygon(0 58%,100% 58%,100% 100%,0 100%)}
+@keyframes g1{0%,93%,100%{transform:translate(0);opacity:0}93.5%{transform:translate(-3px,2px);opacity:.8;filter:brightness(2)}94%{transform:translate(3px,-2px);opacity:0}95%{transform:translate(-2px,0);opacity:.5}96%{opacity:0}}
+@keyframes g2{0%,91.5%,100%{transform:translate(0);opacity:0}92%{transform:translate(2px,-1px);opacity:.7}92.5%{transform:translate(-2px,2px);opacity:0}93%{transform:translate(1px,-1px);opacity:.4}93.5%{opacity:0}}
+.hero-typed{font-family:var(--MF);font-size:.9rem;font-weight:300;color:var(--t2);min-height:24px;animation:fadeUp .8s var(--eout) 1s both}
+.tcur{display:inline-block;width:2px;height:.85em;background:var(--t3);vertical-align:text-bottom;margin-left:2px;animation:blink .8s step-end infinite}
+@keyframes blink{50%{opacity:0}}
+.hero-desc{font-size:.88rem;line-height:1.75;color:var(--t2);max-width:460px;animation:fadeUp .8s var(--eout) 1.15s both}
+.hero-cta{display:flex;gap:14px;animation:fadeUp .8s var(--eout) 1.3s both}
+.btn-p{display:inline-block;padding:13px 28px;background:var(--acc);color:var(--acc-inv);font-family:var(--MF);font-size:.63rem;letter-spacing:.18em;text-transform:uppercase;position:relative;overflow:hidden;transition:transform .3s var(--spring)}
+.btn-p::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(128,128,128,.25),transparent);transform:translateX(-100%);transition:transform .55s var(--ease)}
+.btn-p:hover::before{transform:translateX(100%)}
+.btn-p:hover{transform:translateY(-2px)}
+.btn-s{display:inline-block;padding:13px 28px;background:transparent;color:var(--t2);font-family:var(--MF);font-size:.63rem;letter-spacing:.18em;text-transform:uppercase;border:1px solid var(--brd2);transition:border-color .3s,color .3s}
+.btn-s:hover{border-color:var(--acc);color:var(--t1)}
+.hero-visual{display:flex;justify-content:center;align-items:center;animation:fadeRight 1s var(--eout) .7s both}
+.photo-frame{position:relative;width:clamp(240px,30vw,400px);aspect-ratio:3/4}
+.photo-frame::before{content:'';position:absolute;inset:-16px;border:1px solid var(--brd);z-index:0;animation:fpulse 5s ease-in-out infinite}
+.photo-frame::after{content:'';position:absolute;inset:-32px;border:1px solid var(--brd);z-index:0;opacity:.4;animation:fpulse 5s ease-in-out infinite reverse}
+@keyframes fpulse{0%,100%{opacity:1}50%{opacity:.2}}
+.photo-frame img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;object-position:top center}
+.photo-veil{position:absolute;inset:0;z-index:2;background:linear-gradient(to bottom,transparent 55%,rgba(0,0,0,.6) 100%)}
+html.light .photo-veil{background:linear-gradient(to bottom,transparent 55%,rgba(255,255,255,.5) 100%)}
+.photo-badge{position:absolute;bottom:18px;right:-18px;z-index:3;background:var(--bg3);border:1px solid var(--brd);padding:10px 14px;font-family:var(--MF);font-size:.58rem;letter-spacing:.12em;color:var(--t3)}
+.scroll-ind{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:2;animation:fadeIn 1s var(--eout) 2.4s both}
+.scroll-ln{width:1px;height:44px;background:linear-gradient(to bottom,transparent,var(--t3));animation:sln 2.4s ease-in-out infinite}
+@keyframes sln{0%{transform:scaleY(0);transform-origin:top}49%{transform:scaleY(1);transform-origin:top}50%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.scroll-t{font-family:var(--MF);font-size:.52rem;letter-spacing:.22em;color:var(--t3);text-transform:uppercase;writing-mode:vertical-rl}
+.ticker-wrap{position:absolute;bottom:0;left:0;right:0;z-index:2;border-top:1px solid var(--brd);overflow:hidden;padding:10px 0}
+.ticker{display:flex;white-space:nowrap;animation:ticker 32s linear infinite}
+.ticker span{font-family:var(--MF);font-size:.55rem;letter-spacing:.2em;color:var(--t3);text-transform:uppercase;padding:0 26px;flex-shrink:0}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes fadeRight{from{opacity:0;transform:translateX(36px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* ABOUT */
+#about{background:var(--bg2)}
+.about-grid{display:grid;grid-template-columns:2fr 1fr;gap:80px;max-width:1200px}
+.about-text{font-family:var(--CF);font-size:1.3rem;font-weight:300;line-height:1.75;color:var(--t2)}
+.about-text em{font-style:italic;color:var(--t1)}
+.about-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.tag{font-family:var(--MF);font-size:.58rem;letter-spacing:.1em;color:var(--t3);border:1px solid var(--brd);padding:6px 14px;transition:border-color .3s,color .3s}
+.tag:hover{border-color:var(--brd2);color:var(--t2)}
+.about-side{display:flex;flex-direction:column}
+.a-item{padding:18px 0;border-bottom:1px solid var(--brd)}
+.a-item:first-child{padding-top:0}
+.a-lbl{font-family:var(--MF);font-size:.56rem;letter-spacing:.2em;color:var(--t3);text-transform:uppercase;margin-bottom:6px}
+.a-val{font-size:.86rem;color:var(--t2);line-height:1.5}
+
+/* SKILLS */
+#skills{background:var(--bg)}
+.sk-intro{max-width:580px;margin-bottom:52px}
+.sk-intro p{font-size:.9rem;line-height:1.75;color:var(--t2)}
+.sk-cat-label{font-family:var(--MF);font-size:.6rem;letter-spacing:.25em;color:var(--t3);text-transform:uppercase;margin-bottom:16px;margin-top:48px;display:flex;align-items:center;gap:12px}
+.sk-cat-label:first-of-type{margin-top:0}
+.sk-cat-label::after{content:'';flex:1;height:1px;background:var(--brd)}
+.sk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:1px;background:var(--brd);border:1px solid var(--brd);max-width:1200px}
+.sk-card{background:var(--bg);padding:28px 18px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;transition:background .25s;position:relative;overflow:hidden}
+.sk-card::before{content:'';position:absolute;top:0;left:0;width:0;height:1px;background:var(--acc);transition:width .5s var(--ease)}
+.sk-card:hover{background:var(--bg3)}
+.sk-card:hover::before{width:100%}
+.sk-img{width:40px;height:40px;object-fit:contain}
+.sk-fa{font-size:2rem;color:var(--t2);transition:color .3s}
+.sk-card:hover .sk-fa{color:var(--t1)}
+.sk-nm{font-family:var(--CF);font-size:.9rem;font-weight:400;color:var(--t2);line-height:1.2;transition:color .3s}
+.sk-card:hover .sk-nm{color:var(--t1)}
+
+/* EXPERIENCE */
+#experience{background:var(--bg2)}
+.tl{max-width:880px;position:relative}
+.tl::before{content:'';position:absolute;left:0;top:0;width:1px;height:0;background:linear-gradient(to bottom,var(--brd2),transparent);transition:height 1.8s var(--eout)}
+.tl.in::before{height:100%}
+.tl-item{padding-left:48px;padding-bottom:50px;position:relative}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{position:absolute;left:-4px;top:6px;width:9px;height:9px;background:var(--bg2);border:1px solid var(--t3);border-radius:50%;transition:border-color .3s,box-shadow .3s}
+.tl-item:hover .tl-dot{border-color:var(--t1);box-shadow:0 0 12px rgba(128,128,128,.3)}
+.tl-yr{font-family:var(--MF);font-size:.58rem;letter-spacing:.16em;color:var(--t3);text-transform:uppercase;margin-bottom:8px}
+.tl-title{font-family:var(--CF);font-size:1.35rem;font-weight:500;color:var(--t1);margin-bottom:4px}
+.tl-org{font-family:var(--MF);font-size:.6rem;letter-spacing:.1em;color:var(--t3);margin-bottom:12px}
+.tl-desc{font-size:.84rem;line-height:1.72;color:var(--t2)}
+
+/* EDUCATION */
+#education{background:var(--bg3)}
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--brd);border:1px solid var(--brd);max-width:1200px}
+.edu-card{background:var(--bg3);padding:34px 30px;position:relative;overflow:hidden;transition:background .3s}
+.edu-card::before{content:'';position:absolute;top:0;left:0;width:0;height:1px;background:var(--acc);transition:width .55s var(--ease)}
+.edu-card:hover{background:var(--bg4)}
+.edu-card:hover::before{width:100%}
+.edu-yr{font-family:var(--MF);font-size:.56rem;letter-spacing:.2em;color:var(--t3);text-transform:uppercase;margin-bottom:14px}
+.edu-title{font-family:var(--CF);font-size:1.1rem;font-weight:500;color:var(--t1);line-height:1.3;margin-bottom:8px}
+.edu-inst{font-size:.8rem;color:var(--t2)}
+
+/* LANGUAGES */
+#languages{background:var(--bg2)}
+.lang-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;max-width:680px}
+.lang-item{display:flex;flex-direction:column;gap:12px}
+.lang-head{display:flex;justify-content:space-between;align-items:baseline}
+.lang-nm{font-family:var(--CF);font-size:1.15rem;font-weight:400;color:var(--t1)}
+.lang-lvl{font-family:var(--MF);font-size:.56rem;color:var(--t3);letter-spacing:.1em}
+.lang-track{height:1px;background:var(--bg4);position:relative}
+.lang-fill{position:absolute;left:0;top:0;height:1px;background:var(--acc);width:0;transition:width 1.5s var(--eout)}
+
+/* CONTACT */
+#contact{background:var(--bg);min-height:auto;padding-bottom:80px}
+.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1100px}
+.ct-head{font-family:var(--CF);font-size:clamp(2rem,3.8vw,3.2rem);font-weight:300;line-height:1.15;margin-bottom:28px;color:var(--t1)}
+.ct-head em{font-style:italic;color:var(--t3)}
+.ct-email-btn{display:inline-flex;align-items:center;gap:12px;padding:14px 28px;background:var(--acc);color:var(--acc-inv);font-family:var(--MF);font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:36px;transition:opacity .3s,transform .3s var(--spring)}
+.ct-email-btn:hover{opacity:.85;transform:translateY(-2px)}
+.ct-links{display:flex;flex-direction:column}
+.ct-link{display:flex;align-items:center;gap:16px;padding:18px 0;border-bottom:1px solid var(--brd);transition:border-color .3s}
+.ct-link:hover{border-color:var(--brd2)}
+.ct-icon{width:34px;height:34px;border:1px solid var(--brd);display:flex;align-items:center;justify-content:center;font-size:.72rem;color:var(--t3);flex-shrink:0;transition:border-color .3s,color .3s}
+.ct-link:hover .ct-icon{border-color:var(--brd2);color:var(--t1)}
+.ct-txt{font-size:.84rem;color:var(--t2);transition:color .3s;word-break:break-all}
+.ct-link:hover .ct-txt{color:var(--t1)}
+.soc-row{display:flex;gap:10px;margin-top:24px}
+.soc-ic{width:36px;height:36px;border:1px solid var(--brd);display:flex;align-items:center;justify-content:center;font-size:.78rem;color:var(--t3);transition:border-color .3s,color .3s,transform .3s var(--spring)}
+.soc-ic:hover{border-color:var(--brd2);color:var(--t1);transform:translateY(-3px)}
+.ct-form-wrap{display:flex;flex-direction:column;gap:24px}
+.ct-form-title{font-family:var(--CF);font-size:1.5rem;font-weight:400;color:var(--t1);margin-bottom:8px}
+.f-row{display:flex;flex-direction:column;gap:8px}
+.f-lbl{font-family:var(--MF);font-size:.56rem;letter-spacing:.18em;color:var(--t3);text-transform:uppercase}
+.f-in,.f-ta{background:transparent;border:none;border-bottom:1px solid var(--brd);padding:10px 0;color:var(--t1);font-family:var(--SF);font-size:.86rem;outline:none;transition:border-color .3s;width:100%}
+.f-in:focus,.f-ta:focus{border-bottom-color:var(--acc)}
+.f-in::placeholder,.f-ta::placeholder{color:var(--t3)}
+.f-ta{resize:none;min-height:100px}
+.btn-sub{align-self:flex-start;padding:14px 34px;background:var(--acc);color:var(--acc-inv);font-family:var(--MF);font-size:.63rem;letter-spacing:.18em;text-transform:uppercase;transition:opacity .3s,transform .3s var(--spring)}
+.btn-sub:hover{opacity:.85;transform:translateY(-2px)}
+
+/* FOOTER */
+footer{padding:24px 60px;border-top:1px solid var(--brd);display:flex;justify-content:space-between;align-items:center;background:var(--bg);flex-wrap:wrap;gap:12px}
+.ft-nm{font-family:var(--CF);font-size:.86rem;color:var(--t3);letter-spacing:.06em}
+.ft-copy{font-family:var(--MF);font-size:.54rem;letter-spacing:.16em;color:var(--t3);text-transform:uppercase}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  section{padding:100px 40px}
+  nav,nav.scr{padding-left:40px;padding-right:40px}
+  .hero-inner{padding:80px 40px;gap:60px}
+  .about-grid{grid-template-columns:1fr;gap:52px}
+  footer{padding:20px 40px}
+}
+@media(max-width:768px){
+  section{padding:80px 24px}
+  nav{padding:18px 24px}
+  nav.scr{padding:12px 24px}
+  .nav-links{display:none}
+  .burger{display:flex}
+  .hero-inner{grid-template-columns:1fr;padding:90px 24px 60px;gap:40px;align-items:flex-start}
+  .hero-visual{order:-1}
+  .photo-frame{width:min(260px,74vw)}
+  .photo-badge{right:0}
+  .ct-grid{grid-template-columns:1fr;gap:56px}
+  .lang-grid{grid-template-columns:1fr}
+  .sk-grid{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}
+  .edu-grid{grid-template-columns:1fr}
+  footer{flex-direction:column;text-align:center;padding:20px 24px}
+}
+@media(max-width:480px){
+  .hero-cta{flex-direction:column}
+}
+</style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <div class="logo">Portfolio</div>
-            <div class="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#accueil" class="nav-link active" data-section="accueil">Accueil</a></li>
-                <li><a href="#apropos" class="nav-link" data-section="apropos">À propos</a></li>
-                <li><a href="#competences" class="nav-link" data-section="competences">Compétences</a></li>
-                <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+<div id="cd"></div>
+<div id="cr"></div>
 
-    <!-- Conteneur principal pour les sections -->
-    <main id="content-container">
-        <!-- Section Accueil -->
-        <section id="accueil" class="active">
-            <div class="container">
-                <div class="hero">
-                    <div class="photo-container">
-                        <div >
-                            <img class="photo-placeholder" src="Image1.png" alt="image">
-                        </div>
-                    </div>
-                    <div class="hero-content">
-                        <h1>ASONDRAZANIAINA Harena Asondrotra Sergio</h1>
-                        <div class="welcome-message">
-                            <p>Bienvenue sur mon portfolio !</p>
-                            <p>Je suis étudiant en informatique appliquée à l'UDM Rose Hill, passionné par le développement web, la gestion de données et l'administration. Rigoureux et organisé, je m'adapte facilement aux besoins des projets.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- LOADER -->
+<div id="loader">
+  <div class="ld-wrap">
+    <svg class="ld-ring" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="60" cy="60" r="54"/>
+    </svg>
+    <div class="ld-logo-c">
+      <svg viewBox="0 0 489.34773 537.9639" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true">
+        <path d="M1315.9336,853.17511a91.18252,91.18252,0,0,1-3.49,25.41,222.875,222.875,0,0,1-10.87,30.83,57.97212,57.97212,0,0,1-9.68006,15.46,49.05572,49.05572,0,0,1-16.96,12.02,149.96667,149.96667,0,0,1-30.78,9.48c-15.53,3.23-30.93994,2.21-46.28-1.29a126.63361,126.63361,0,0,1-27.54992-9.55,90.04675,90.04675,0,0,1-21.23-14.38c-2.15-1.94995-4.28992-3.9-6.67-6.06,3.94995-18.51,8.34009-36.94,17.06006-54.3,3.24,2.81,6.37,5.39,9.34,8.14,8.34,7.74,18.05993,13.18,28.61,17.19a123.51234,123.51234,0,0,0,38.73,7.81,127.79784,127.79784,0,0,0,40.55005-4.6,70.12782,70.12782,0,0,0,7.76-2.86005,11.25554,11.25554,0,0,0,2.93994-1.84c2.26-1.91,2.77-3.98005,1.46-6.61005a30.94048,30.94048,0,0,0-3.29992-5.11,118.73889,118.73889,0,0,0-19.16-19c-13.04992-10.54-27.16992-19.48-41.72-27.74-19.76-11.23-40.05005-21.4-60.59-31.08,0,.02-.01.04-.01.06a165.56384,165.56384,0,0,1-12.53992,41.17005,23.82409,23.82409,0,0,1-3,4.78c-1.04,1.37-2.52,1.29-3.11011-.18-2.13-5.3-6.38989-8.55-10.88-11.56a107.1411,107.1411,0,0,0-27.86-13.28,41.9209,41.9209,0,0,0-5.93-1.42,25.83081,25.83081,0,0,0-5.2-.23c-1.59.07-2.26,1.23-1.7,2.79a27.66826,27.66826,0,0,0,1.78,3.97c3.07,5.61,6.02,11.3,9.35,16.75,8.77,14.39,17.72,28.68,26.59,43,1.54,2.48,3.03,4.97,4.62,7.4a6.08723,6.08723,0,0,1,.91992,4.96c-2.51,11.06-4.91992,22.15-8.67993,32.87-1.34,3.83-2.96,7.58-4.67,11.26a14.08932,14.08932,0,0,1-2.91,3.74,1.90628,1.90628,0,0,1-2.98-.49c-11.19-17.86-22.48-35.65-33.53-53.59-9-14.6-17.75-29.35-26.55005-44.08-3.19995-5.37-6.19995-10.86005-9.29-16.29-.71-1.24-1.44-2.47-2.24-3.86a25.04161,25.04161,0,0,0-3.05.82q-18.39,7.5-37.29,13.54c-3.87,1.24-7.59,2.94-11.36,4.46a18.94136,18.94136,0,0,0-2.32,1.21c-3.67,2.14-4.07,3.16-1.92,6.95,4.37,7.72,8.76,15.43,13.43,22.96q21.255,34.275,42.77,68.41a7.52427,7.52427,0,0,1,1.09,6.48c-2.13995,8.15-3.62,16.47-6.26,24.5a185.48624,185.48624,0,0,1-7.48,19.06,25.44293,25.44293,0,0,1-1.97,3.38c-.93,1.41-2.21,1.38995-3.09.05-5.17-7.89-10.46-15.72-15.52-23.68q-21.885-34.41-43.61-68.92-12.12-19.17-24.15-38.38c-.93006-1.47-1.91-2.89-3.03-4.59-2.73.74-4.98,1.29-7.2,1.95-10.91,3.25-22.11,5.03-33.36,6.47-8.07,1.03-16.18,1.7-24.29,2.4a62.70462,62.70462,0,0,1-15.66-.58c-5.56-.93-6.71-2.46-5.63-7.99a166.80742,166.80742,0,0,1,11.91-37.76c1.27-2.76,2.47-5.56,3.69-8.31,12.38995-.94,24.66.75,36.76-1.44.26-.04.48-.31.9-.6.34-1.87-.64-3.53-1.53-5.13-2.04-3.68-4.1-7.37-6.34-10.93-9.21-14.65-18.71-29.11-29.16-42.92a47.68416,47.68416,0,0,0-4.98005-6.05,8.53039,8.53039,0,0,1-2.54-7.54,103.03321,103.03321,0,0,1,1.98-12.47,142.20906,142.20906,0,0,1,8.8-25.51c1.65-3.72,3.37006-7.4,5.08-11.13,2.33-.01,3.68,1.62,4.92,3.13995,3.48005,4.28,7.05,8.52,10.18006,13.05,8.59,12.44,17.03,24.98,25.43,37.55,8.88,13.29,17.66,26.66,26.48,40,3.2,4.85,6.37,9.73,9.56,14.59.8,1.21,1.64,2.39,2.51,3.66a7.80364,7.80364,0,0,0,1.74-.16c16.49-5.69,32.99-11.34,49.44-17.13995a49.37792,49.37792,0,0,0,8.18-4.05c1.92-1.12,2.07-1.98,1.1-4.02-1.18-2.5-2.47-4.94-3.81006-7.36q-13.13993-23.86506-26.34-47.72c-6.76-12.21-13.56-24.39-19.57-37-3.41-7.15-3.74-8.63-1.51-16.34,1.82-6.27,4.09-12.42,6.35-18.55,2.2-6,4.63995-11.92,7-17.86a28.1662,28.1662,0,0,1,1.25994-2.52c1.7-.18006,2.29.95,2.91,1.87994,2.08,3.15,4.2,6.29,6.1,9.55,8.87,15.19,17.76,30.37,26.45,45.66,9.34,16.43,18.49,32.96,27.67,49.48,3.68,6.6,7.22,13.28,10.85,19.91a95.18645,95.18645,0,0,0,5.74,9.47c1.73.56,3.14.09,4.55-.18,7.86-1.46,15.71-2.99,23.58-4.38.8-.14,1.61-.28,2.41-.39a210.64261,210.64261,0,0,1-23.23-13.98,83.73054,83.73054,0,0,1-10.75-8.87,41.40568,41.40568,0,0,1-12.14-24.99c-1.31-10.38-.46-20.63,1.3-30.83a173.06662,173.06662,0,0,1,16.48-49.92,96.47236,96.47236,0,0,1,10.54-16.53009c6.92-8.59985,15.61-14.27991,26.7-15.86987,6.61-.95008,13.05.12988,19.36,2.02,8.84,2.63989,16.97,6.85986,24.95,11.37988,2.78991,1.57007,5.54992,3.18,8.34,4.75a18.53486,18.53486,0,0,0,1.98.78c-.22-1.33-.29-2.29-.54-3.21-1.79992-6.59009-3.75-13.14-5.41992-19.77a98.04434,98.04434,0,0,1-2.21-11.55c-.8501-6.66992.85-13.03,3.23-19.15991,3.06006-7.86011,6.3999-15.6001,9.64-23.38013a15.4252,15.4252,0,0,1,3.13-5c1.67993,1.03,2.06006,2.49011,2.56995,3.82007q3.585,9.375,7.08,18.77a294.32144,294.32144,0,0,0,15.16016,34.75,181.75633,181.75633,0,0,0,20.68994,31.22c5.63989,6.83,11.56995,13.44,17.37988,20.13,2.57007,2.97,5.12012,5.96,7.77,8.85a5.62664,5.62664,0,0,1,1.33008,5.17c-2.27,14.91-7.06006,29.07-12.54,43.03-.90991,2.3-1.77,4.61-2.67993,6.91a4.35543,4.35543,0,0,1-.65.83c-2.82-2.2-5.87-4.08-7.85-7.26a22.06827,22.06827,0,0,0-3.30005-3.48c-2.96-2.97-5.94995-5.93005-9.15991-9.14a22.36864,22.36864,0,0,0-1.5,2.32c-1.84009,3.95-3.58008,7.95-5.49,11.87a40.18073,40.18073,0,0,1-3.13013,5.23c-.80005,1.17-1.65991,2.41-3.2,2.64-.34009-.16-.72-.21-.83008-.41-3.18994-5.9-8.11987-10.27-13.1499-14.42a288.07031,288.07031,0,0,0-47.36-31.8,101.14646,101.14646,0,0,0-25.1-9.85c-7.5-1.71-15.01-1.94-22.39.53a29.08943,29.08943,0,0,0-6.66,3.17c-3.36005,2.19-5.06,5.56-2.77,10.22a49.45964,49.45964,0,0,0,7.59,11.13,93.11951,93.11951,0,0,0,16.68,14.65,206.26773,206.26773,0,0,0,18.99,11.56c16.89,9.14,34.36,17.09,51.74,25.21q20.74512,9.69,41.33008,19.68c13.99,6.76,27.82983,13.83,41.32,21.54,13.75,7.87,27.24,16.16,39.41,26.35,7.36987,6.17,14.22,12.87,19.52,21.02A57.49416,57.49416,0,0,1,1315.9336,853.17511Z" transform="translate(-826.59226 -457.72748)"/>
+        <path d="M1193.72308,457.72748a2.08564,2.08564,0,0,1,2.03491,2.44368c-.11559,2.61009-.4565,5.23008-.32685,7.82714.2968,5.947.7646,11.88731,1.26467,17.82177a258.5535,258.5535,0,0,0,4.24868,27.99829A119.48785,119.48785,0,0,0,1211.17,544.31609c3.56175,7.142,4.08143,14.41336,2.68541,22.05207a97.24316,97.24316,0,0,1-6.785,21.58354,68.9132,68.9132,0,0,1-3.30884,6.1321,6.21664,6.21664,0,0,1-2.68136,2.66713,3.43494,3.43494,0,0,1-3.17525-2.0845,90.43437,90.43437,0,0,1-4.52493-8.44282,124.48924,124.48924,0,0,1-9.97116-40.89646,298.60319,298.60319,0,0,1-.68512-35.74144c.50188-12.78664,1.54261-25.5385,4.28938-38.0839a34.21668,34.21668,0,0,1,5.535-12.64373A8.209,8.209,0,0,1,1193.72308,457.72748Z" transform="translate(-826.59226 -457.72748)"/>
+        <path d="M842.07182,806.97288c4.90232,2.09659,8.94422,5.14384,13.5897,7.35469a16.23515,16.23515,0,0,1-.82394,2.783c-6.67271,12.59819-9.931,26.25213-12.49426,40.1276-.55062,2.98035-1.193,5.9437-1.79547,8.92676-3.06073-.80668-9.80359-4.49462-13.95559-7.596.21658-1.30259.41958-2.71635.6897-4.11717,1.94851-10.10491,3.86926-20.21452,6.99865-30.0474A102.93151,102.93151,0,0,1,842.07182,806.97288Z" transform="translate(-826.59226 -457.72748)"/>
+      </svg>
+    </div>
+  </div>
+  <div class="ld-txt" data-i18n="loading">Chargement</div>
+</div>
 
-        <!-- Section À propos -->
-        <section id="apropos">
-            <div class="container">
-                <h2 class="section-title">À propos de moi</h2>
-                <div class="about-content">
-                    <div class="about-text">
-                        <h3>Profil</h3>
-                        <p>Opérateur de saisie maîtrisant les outils bureautiques. À l'aise avec la saisie de données, le traitement de documents et le suivi administratif. Rigoureux et organisé, je m'adapte facilement aux besoins de l'entreprise.</p>
-                        
-                        <h3 style="margin-top: 30px;">Atouts</h3>
-                        <ul>
-                            <li>Travail en équipe</li>
-                            <li>Ponctuel</li>
-                            <li>Patient</li>
-                            <li>Facile à diriger</li>
-                            <li>Créatif</li>
-                            <li>Sens du relationnel</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="about-details">
-                        <div class="detail-card">
-                            <h3><i class="fas fa-graduation-cap"></i> Formations</h3>
-                            <ul>
-                                <li>Étudiant en Informatique Appliquée - UDM Rose Hill (2025-2026)</li>
-                                <li>Formation en Agent de Call Center et Anglais - Polyglote (2025)</li>
-                                <li>Formation en Gestion Financière - Projet HARIVOLA (2023)</li>
-                                <li>Formation en Montage de Projet - FAAVORIF Madagascar (2023)</li>
-                                <li>DELF B2 - Alliance Française (2021)</li>
-                                <li>BACC D - Lycée Notre Dame Mahajanga (2020-2021)</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="detail-card">
-                            <h3><i class="fas fa-briefcase"></i> Expériences Professionnelles</h3>
-                            <ul>
-                                <li>Assistant de Direction - Résidence Hutamac (2025)</li>
-                                <li>Opérateur de Saisie et Designer de Documents (2024)</li>
-                                <li>Volontaire de la Croix Rouge - Projet Aro Aina (2023)</li>
-                                <li>Agent de Prospection - SMECC Mahajanga (2024)</li>
-                                <li>Assistante de Personnel - SIPEM Mahajanga (2024)</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="detail-card">
-                            <h3><i class="fas fa-map-marker-alt"></i> Localisation</h3>
-                            <p>Petit Verger Pointe Aux Sables, Île Maurice</p>
-                            <div class="map-container">
-                                <iframe 
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3740.869502906013!2d57.433449!3d-20.178653!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjDCsDEwJzQzLjEiUyA1N8KwMjYnMDAuNCJF!5e0!3m2!1sfr!2smu!4v1620000000000!5m2!1sfr!2smu" 
-                                    width="100%" 
-                                    height="100%" 
-                                    style="border:0;" 
-                                    allowfullscreen="" 
-                                    loading="lazy">
-                                </iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">
+    <svg viewBox="0 0 489.34773 537.9639" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true">
+      <path d="M1315.9336,853.17511a91.18252,91.18252,0,0,1-3.49,25.41,222.875,222.875,0,0,1-10.87,30.83,57.97212,57.97212,0,0,1-9.68006,15.46,49.05572,49.05572,0,0,1-16.96,12.02,149.96667,149.96667,0,0,1-30.78,9.48c-15.53,3.23-30.93994,2.21-46.28-1.29a126.63361,126.63361,0,0,1-27.54992-9.55,90.04675,90.04675,0,0,1-21.23-14.38c-2.15-1.94995-4.28992-3.9-6.67-6.06,3.94995-18.51,8.34009-36.94,17.06006-54.3,3.24,2.81,6.37,5.39,9.34,8.14,8.34,7.74,18.05993,13.18,28.61,17.19a123.51234,123.51234,0,0,0,38.73,7.81,127.79784,127.79784,0,0,0,40.55005-4.6,70.12782,70.12782,0,0,0,7.76-2.86005,11.25554,11.25554,0,0,0,2.93994-1.84c2.26-1.91,2.77-3.98005,1.46-6.61005a30.94048,30.94048,0,0,0-3.29992-5.11,118.73889,118.73889,0,0,0-19.16-19c-13.04992-10.54-27.16992-19.48-41.72-27.74-19.76-11.23-40.05005-21.4-60.59-31.08,0,.02-.01.04-.01.06a165.56384,165.56384,0,0,1-12.53992,41.17005,23.82409,23.82409,0,0,1-3,4.78c-1.04,1.37-2.52,1.29-3.11011-.18-2.13-5.3-6.38989-8.55-10.88-11.56a107.1411,107.1411,0,0,0-27.86-13.28,41.9209,41.9209,0,0,0-5.93-1.42,25.83081,25.83081,0,0,0-5.2-.23c-1.59.07-2.26,1.23-1.7,2.79a27.66826,27.66826,0,0,0,1.78,3.97c3.07,5.61,6.02,11.3,9.35,16.75,8.77,14.39,17.72,28.68,26.59,43,1.54,2.48,3.03,4.97,4.62,7.4a6.08723,6.08723,0,0,1,.91992,4.96c-2.51,11.06-4.91992,22.15-8.67993,32.87-1.34,3.83-2.96,7.58-4.67,11.26a14.08932,14.08932,0,0,1-2.91,3.74,1.90628,1.90628,0,0,1-2.98-.49c-11.19-17.86-22.48-35.65-33.53-53.59-9-14.6-17.75-29.35-26.55005-44.08-3.19995-5.37-6.19995-10.86005-9.29-16.29-.71-1.24-1.44-2.47-2.24-3.86a25.04161,25.04161,0,0,0-3.05.82q-18.39,7.5-37.29,13.54c-3.87,1.24-7.59,2.94-11.36,4.46a18.94136,18.94136,0,0,0-2.32,1.21c-3.67,2.14-4.07,3.16-1.92,6.95,4.37,7.72,8.76,15.43,13.43,22.96q21.255,34.275,42.77,68.41a7.52427,7.52427,0,0,1,1.09,6.48c-2.13995,8.15-3.62,16.47-6.26,24.5a185.48624,185.48624,0,0,1-7.48,19.06,25.44293,25.44293,0,0,1-1.97,3.38c-.93,1.41-2.21,1.38995-3.09.05-5.17-7.89-10.46-15.72-15.52-23.68q-21.885-34.41-43.61-68.92-12.12-19.17-24.15-38.38c-.93006-1.47-1.91-2.89-3.03-4.59-2.73.74-4.98,1.29-7.2,1.95-10.91,3.25-22.11,5.03-33.36,6.47-8.07,1.03-16.18,1.7-24.29,2.4a62.70462,62.70462,0,0,1-15.66-.58c-5.56-.93-6.71-2.46-5.63-7.99a166.80742,166.80742,0,0,1,11.91-37.76c1.27-2.76,2.47-5.56,3.69-8.31,12.38995-.94,24.66.75,36.76-1.44.26-.04.48-.31.9-.6.34-1.87-.64-3.53-1.53-5.13-2.04-3.68-4.1-7.37-6.34-10.93-9.21-14.65-18.71-29.11-29.16-42.92a47.68416,47.68416,0,0,0-4.98005-6.05,8.53039,8.53039,0,0,1-2.54-7.54,103.03321,103.03321,0,0,1,1.98-12.47,142.20906,142.20906,0,0,1,8.8-25.51c1.65-3.72,3.37006-7.4,5.08-11.13,2.33-.01,3.68,1.62,4.92,3.13995,3.48005,4.28,7.05,8.52,10.18006,13.05,8.59,12.44,17.03,24.98,25.43,37.55,8.88,13.29,17.66,26.66,26.48,40,3.2,4.85,6.37,9.73,9.56,14.59.8,1.21,1.64,2.39,2.51,3.66a7.80364,7.80364,0,0,0,1.74-.16c16.49-5.69,32.99-11.34,49.44-17.13995a49.37792,49.37792,0,0,0,8.18-4.05c1.92-1.12,2.07-1.98,1.1-4.02-1.18-2.5-2.47-4.94-3.81006-7.36q-13.13993-23.86506-26.34-47.72c-6.76-12.21-13.56-24.39-19.57-37-3.41-7.15-3.74-8.63-1.51-16.34,1.82-6.27,4.09-12.42,6.35-18.55,2.2-6,4.63995-11.92,7-17.86a28.1662,28.1662,0,0,1,1.25994-2.52c1.7-.18006,2.29.95,2.91,1.87994,2.08,3.15,4.2,6.29,6.1,9.55,8.87,15.19,17.76,30.37,26.45,45.66,9.34,16.43,18.49,32.96,27.67,49.48,3.68,6.6,7.22,13.28,10.85,19.91a95.18645,95.18645,0,0,0,5.74,9.47c1.73.56,3.14.09,4.55-.18,7.86-1.46,15.71-2.99,23.58-4.38.8-.14,1.61-.28,2.41-.39a210.64261,210.64261,0,0,1-23.23-13.98,83.73054,83.73054,0,0,1-10.75-8.87,41.40568,41.40568,0,0,1-12.14-24.99c-1.31-10.38-.46-20.63,1.3-30.83a173.06662,173.06662,0,0,1,16.48-49.92,96.47236,96.47236,0,0,1,10.54-16.53009c6.92-8.59985,15.61-14.27991,26.7-15.86987,6.61-.95008,13.05.12988,19.36,2.02,8.84,2.63989,16.97,6.85986,24.95,11.37988,2.78991,1.57007,5.54992,3.18,8.34,4.75a18.53486,18.53486,0,0,0,1.98.78c-.22-1.33-.29-2.29-.54-3.21-1.79992-6.59009-3.75-13.14-5.41992-19.77a98.04434,98.04434,0,0,1-2.21-11.55c-.8501-6.66992.85-13.03,3.23-19.15991,3.06006-7.86011,6.3999-15.6001,9.64-23.38013a15.4252,15.4252,0,0,1,3.13-5c1.67993,1.03,2.06006,2.49011,2.56995,3.82007q3.585,9.375,7.08,18.77a294.32144,294.32144,0,0,0,15.16016,34.75,181.75633,181.75633,0,0,0,20.68994,31.22c5.63989,6.83,11.56995,13.44,17.37988,20.13,2.57007,2.97,5.12012,5.96,7.77,8.85a5.62664,5.62664,0,0,1,1.33008,5.17c-2.27,14.91-7.06006,29.07-12.54,43.03-.90991,2.3-1.77,4.61-2.67993,6.91a4.35543,4.35543,0,0,1-.65.83c-2.82-2.2-5.87-4.08-7.85-7.26a22.06827,22.06827,0,0,0-3.30005-3.48c-2.96-2.97-5.94995-5.93005-9.15991-9.14a22.36864,22.36864,0,0,0-1.5,2.32c-1.84009,3.95-3.58008,7.95-5.49,11.87a40.18073,40.18073,0,0,1-3.13013,5.23c-.80005,1.17-1.65991,2.41-3.2,2.64-.34009-.16-.72-.21-.83008-.41-3.18994-5.9-8.11987-10.27-13.1499-14.42a288.07031,288.07031,0,0,0-47.36-31.8,101.14646,101.14646,0,0,0-25.1-9.85c-7.5-1.71-15.01-1.94-22.39.53a29.08943,29.08943,0,0,0-6.66,3.17c-3.36005,2.19-5.06,5.56-2.77,10.22a49.45964,49.45964,0,0,0,7.59,11.13,93.11951,93.11951,0,0,0,16.68,14.65,206.26773,206.26773,0,0,0,18.99,11.56c16.89,9.14,34.36,17.09,51.74,25.21q20.74512,9.69,41.33008,19.68c13.99,6.76,27.82983,13.83,41.32,21.54,13.75,7.87,27.24,16.16,39.41,26.35,7.36987,6.17,14.22,12.87,19.52,21.02A57.49416,57.49416,0,0,1,1315.9336,853.17511Z" transform="translate(-826.59226 -457.72748)"/>
+      <path d="M1193.72308,457.72748a2.08564,2.08564,0,0,1,2.03491,2.44368c-.11559,2.61009-.4565,5.23008-.32685,7.82714.2968,5.947.7646,11.88731,1.26467,17.82177a258.5535,258.5535,0,0,0,4.24868,27.99829A119.48785,119.48785,0,0,0,1211.17,544.31609c3.56175,7.142,4.08143,14.41336,2.68541,22.05207a97.24316,97.24316,0,0,1-6.785,21.58354,68.9132,68.9132,0,0,1-3.30884,6.1321,6.21664,6.21664,0,0,1-2.68136,2.66713,3.43494,3.43494,0,0,1-3.17525-2.0845,90.43437,90.43437,0,0,1-4.52493-8.44282,124.48924,124.48924,0,0,1-9.97116-40.89646,298.60319,298.60319,0,0,1-.68512-35.74144c.50188-12.78664,1.54261-25.5385,4.28938-38.0839a34.21668,34.21668,0,0,1,5.535-12.64373A8.209,8.209,0,0,1,1193.72308,457.72748Z" transform="translate(-826.59226 -457.72748)"/>
+      <path d="M842.07182,806.97288c4.90232,2.09659,8.94422,5.14384,13.5897,7.35469a16.23515,16.23515,0,0,1-.82394,2.783c-6.67271,12.59819-9.931,26.25213-12.49426,40.1276-.55062,2.98035-1.193,5.9437-1.79547,8.92676-3.06073-.80668-9.80359-4.49462-13.95559-7.596.21658-1.30259.41958-2.71635.6897-4.11717,1.94851-10.10491,3.86926-20.21452,6.99865-30.0474A102.93151,102.93151,0,0,1,842.07182,806.97288Z" transform="translate(-826.59226 -457.72748)"/>
+    </svg>
+    Harena Sergio
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about"      class="nl" data-i18n="nav.about">Profil</a></li>
+    <li><a href="#skills"     class="nl" data-i18n="nav.skills">Competences</a></li>
+    <li><a href="#experience" class="nl" data-i18n="nav.exp">Experience</a></li>
+    <li><a href="#education"  class="nl" data-i18n="nav.edu">Formation</a></li>
+    <li><a href="#contact"    class="nl" data-i18n="nav.contact">Contact</a></li>
+  </ul>
+  <div class="nav-ctrl">
+    <button class="nav-btn" id="lang-btn" title="Switch language">EN</button>
+    <button class="nav-btn" id="theme-btn" title="Toggle theme"><i class="fas fa-sun"></i></button>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
 
-        <!-- Section Compétences -->
-        <section id="competences">
-            <div class="container">
-                <h2 class="section-title">Mes Compétences</h2>
-                <div class="skills-container">
-                    <!-- Développement -->
-                    <div class="skill-category">
-                        <h3><i class="fas fa-code"></i> Développement</h3>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name"><i class="fab fa-html5"></i> HTML</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 70%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name"><i class="fab fa-css3-alt"></i> CSS</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 50%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name"><i class="fab fa-js-square"></i> JavaScript</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 25%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name"><i class="fab fa-python"></i> Python</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 20%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name"><i class="fab fa-react"></i> React JS</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 40%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name"><i class="fas fa-server"></i> XAMPP</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 50%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name"><i class="fab fa-wordpress"></i> WordPress</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 50%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name"><i class="fas fa-database"></i> Supabase</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name"><i class="fab fa-github"></i> GitHub</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        
-                        
-                    </div>
-                    
-                    <!-- Design -->
-                    <div class="skill-category">
-                        <h3><i class="fas fa-palette"></i> Design</h3>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name"><i class="fab fa-adobe"></i> Adobe Illustrator</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 50%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name"><i class="fab fa-adobe"></i> Adobe InDesign</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 50%"></div>
-                            </div>
-                        </div>
-                        
-                        
-                    </div>
-                    
-                    <!-- Bureautique -->
-                    <div class="skill-category">
-                        <h3><i class="fas fa-desktop"></i> Bureautique</h3>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name"><i class="fas fa-file-word"></i> Microsoft Word</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 98%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name"><i class="fas fa-file-excel"></i> Microsoft Excel</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name"><i class="fas fa-file-powerpoint"></i> Microsoft PowerPoint</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 70%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name"><i class="fas fa-envelope"></i> Microsoft Outlook</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 60%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name"><i class="fas fa-users"></i> Microsoft Teams</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name"><i class="fas fa-book"></i> QuickBooks</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 25%"></div>
-                            </div>
-                        </div>
-                        
-                        
-                    </div>
-                    
-                    <!-- Langues -->
-                    <div class="skill-category">
-                        <h3><i class="fas fa-language"></i> Langues</h3>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name"><i class="fas fa-flag"></i> Malgache</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 100%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name"><i class="fas fa-flag"></i> Français</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 100%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name"><i class="fas fa-flag-usa"></i> Anglais</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 60%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name"><i class="fas fa-flag"></i> Italien</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 40%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<div class="mob-nav" id="mobnav">
+  <a href="#about"      class="ml" data-i18n="nav.about">Profil</a>
+  <a href="#skills"     class="ml" data-i18n="nav.skills">Competences</a>
+  <a href="#experience" class="ml" data-i18n="nav.exp">Experience</a>
+  <a href="#education"  class="ml" data-i18n="nav.edu">Formation</a>
+  <a href="#contact"    class="ml" data-i18n="nav.contact">Contact</a>
+</div>
 
-        <!-- Section Contact -->
-        <section id="contact">
-            <div class="container">
-                <h2 class="section-title">Contactez-moi</h2>
-                <div class="contact-container">
-                    <div class="contact-info">
-                        <h3>Mes coordonnées</h3>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>+230 57 16 46 27</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fab fa-whatsapp"></i>
-                            <span>+230 57 16 46 27</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>harenasergioasondrazaniaina@gmail.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Petit Verger Pointe Aux Sables, Île Maurice</span>
-                        </div>
-                        
-                        <h3 style="margin-top: 30px;">Réseaux sociaux</h3>
-                        <div class="social-links">
-                            <a href="https://linkedin.com/in/harenasergio" target="_blank">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a href="https://www.instagram.com/sergioharena?igsh=Y3owemtneTljNmtr" target="_blank">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a href="https://www.facebook.com/sergioharena" target="_blank">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-form">
-                        <h3>Envoyez-moi un message</h3>
-                        <form id="messageForm">
-                            <div class="form-group">
-                                <label for="name">Nom complet</label>
-                                <input type="text" id="name" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="subject">Sujet</label>
-                                <input type="text" id="subject" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="message">Message</label>
-                                <textarea id="message" class="form-control" required></textarea>
-                            </div>
-                            <button type="submit" class="btn">Envoyer le message</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+<!-- HERO -->
+<section id="hero">
+  <canvas id="ptc"></canvas>
+  <div class="hero-gb"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-tag" data-i18n="hero.tag">Informaticien · Designer · Ile Maurice</div>
+      <h1 class="hero-name">
+        <span class="glitch-w" data-t="ASONDRAZANIAINA">ASONDRAZANIAINA</span>
+        <span class="sub">Harena Asondrotra</span>
+        <span class="it">Sergio</span>
+      </h1>
+      <div class="hero-typed"><span id="typed"></span><span class="tcur"></span></div>
+      <p class="hero-desc" data-i18n="hero.desc">Etudiant en Informatique Appliquee a l'UDM Rose Hill, passionne par le developpement web, la gestion de donnees et l'administration numerique. Rigoureux, creatif et oriente solutions.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn-p" data-i18n="hero.cta1">Me contacter</a>
+        <a href="#skills"  class="btn-s" data-i18n="hero.cta2">Voir mes competences</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="photo-frame">
+        <img src="moi.PNG" alt="Sergio" onerror="this.style.minHeight='400px';this.style.background='#111'">
+        <div class="photo-veil"></div>
+        <div class="photo-badge" data-i18n="hero.badge">UDM Rose Hill · 2025</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-ind">
+    <div class="scroll-ln"></div>
+    <span class="scroll-t" data-i18n="scroll">Decouvrir</span>
+  </div>
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span>HTML5</span><span>·</span><span>CSS3</span><span>·</span><span>JavaScript</span><span>·</span><span>Python</span><span>·</span><span>C++</span><span>·</span><span>Linux</span><span>·</span><span>GitHub</span><span>·</span><span>Supabase</span><span>·</span><span>MySQL</span><span>·</span><span>WordPress</span><span>·</span><span>Apache 2</span><span>·</span><span>Adobe Illustrator</span><span>·</span><span>InDesign</span><span>·</span><span>Pack Office</span><span>·</span><span>Google Colab</span><span>·</span><span>Zoom</span><span>·</span><span>Slack</span><span>·</span>
+      <span>HTML5</span><span>·</span><span>CSS3</span><span>·</span><span>JavaScript</span><span>·</span><span>Python</span><span>·</span><span>C++</span><span>·</span><span>Linux</span><span>·</span><span>GitHub</span><span>·</span><span>Supabase</span><span>·</span><span>MySQL</span><span>·</span><span>WordPress</span><span>·</span><span>Apache 2</span><span>·</span><span>Adobe Illustrator</span><span>·</span><span>InDesign</span><span>·</span><span>Pack Office</span><span>·</span><span>Google Colab</span><span>·</span><span>Zoom</span><span>·</span><span>Slack</span><span>·</span>
+    </div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">ASONDRAZANIAINA Harena Asondrotra Sergio</div>
-                <div class="footer-contact">
-                    <a href="tel:+23057164627"><i class="fas fa-phone"></i></a>
-                    <a href="mailto:harenasergioasondrazaniaina@gmail.com"><i class="fas fa-envelope"></i> </a>
-                    <a href="https://linkedin.com/in/harenasergio" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-            <div class="copyright">
-                &copy; 2025 ASONDRAZANIAINA Harena Asondrotra Sergio.
-            </div>
-        </div>
-    </footer>
+<!-- ABOUT -->
+<section id="about">
+  <div class="s-label reveal" data-i18n="s1.label">01 / Profil</div>
+  <h2 class="s-title reveal d1" data-i18n="s1.title">A propos de moi</h2>
+  <div class="about-grid">
+    <div>
+      <p class="about-text reveal d2" data-i18n="s1.text">Operateur de saisie et <em>developpeur web en formation</em>, je maitrise aussi bien les outils bureautiques avances que les technologies du web moderne. Passionne par la creation de solutions numeriques elegantes, je combine rigueur analytique et sensibilite artistique pour concevoir des <em>experiences utilisateur memorables</em>.</p>
+      <div class="about-tags reveal d3">
+        <span class="tag" data-i18n="tag.teamwork">Travail en equipe</span>
+        <span class="tag" data-i18n="tag.rigorous">Rigoureux</span>
+        <span class="tag" data-i18n="tag.creative">Creatif</span>
+        <span class="tag" data-i18n="tag.punctual">Ponctuel</span>
+        <span class="tag" data-i18n="tag.patient">Patient</span>
+        <span class="tag" data-i18n="tag.relational">Sens du relationnel</span>
+        <span class="tag" data-i18n="tag.adaptable">Adaptable</span>
+      </div>
+    </div>
+    <div class="about-side">
+      <div class="a-item reveal d2"><div class="a-lbl" data-i18n="lbl.loc">Localisation</div><div class="a-val">Petit Verger Pointe Aux Sables, Ile Maurice</div></div>
+      <div class="a-item reveal d3"><div class="a-lbl" data-i18n="lbl.edu">Formation actuelle</div><div class="a-val">Informatique Appliquee — UDM Rose Hill</div></div>
+      <div class="a-item reveal d4"><div class="a-lbl" data-i18n="lbl.cert">Certification</div><div class="a-val">DELF B2 — Alliance Francaise (2021)</div></div>
+      <div class="a-item reveal d5"><div class="a-lbl" data-i18n="lbl.avail">Disponibilite</div><div class="a-val" data-i18n="avail">Stage & CDI — Immediatement</div></div>
+      <div class="a-item reveal d6"><div class="a-lbl" data-i18n="lbl.phone">Telephone</div><div class="a-val">+230 57 16 46 27</div></div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        // Navigation
-        document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('.nav-link');
-            const sections = document.querySelectorAll('section');
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navLinksContainer = document.querySelector('.nav-links');
-            
-            // Navigation entre sections - REMPLACE complètement l'accueil
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Retirer la classe active de tous les liens
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    
-                    // Ajouter la classe active au lien cliqué
-                    this.classList.add('active');
-                    
-                    // Masquer toutes les sections
-                    sections.forEach(section => {
-                        section.classList.remove('active');
-                    });
-                    
-                    // Afficher uniquement la section correspondante
-                    const sectionId = this.getAttribute('data-section');
-                    document.getElementById(sectionId).classList.add('active');
-                    
-                    // Fermer le menu mobile si ouvert
-                    navLinksContainer.classList.remove('active');
-                    
-                    // Scroll vers le haut de la page
-                    window.scrollTo(0, 0);
-                });
-            });
-            
-            // Menu mobile
-            menuToggle.addEventListener('click', function() {
-                navLinksContainer.classList.toggle('active');
-            });
-            
-            // Animation des barres de compétences
-            const skillBars = document.querySelectorAll('.skill-progress');
-            
-            // Fonction pour animer les barres de compétences
-            function animateSkillBars() {
-                skillBars.forEach(bar => {
-                    const width = bar.style.width;
-                    bar.style.width = '0';
-                    setTimeout(() => {
-                        bar.style.width = width;
-                    }, 300);
-                });
-            }
-            
-            // Observer pour déclencher l'animation des compétences
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateSkillBars();
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-            
-            observer.observe(document.getElementById('competences'));
-            
-            // Gestion du formulaire de contact
-            const contactForm = document.getElementById('messageForm');
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Récupérer les données du formulaire
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const subject = document.getElementById('subject').value;
-                const message = document.getElementById('message').value;
-                
-                // Préparer le contenu de l'email
-                const mailtoLink = `mailto:harenasergioasondrazaniaina@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Nom: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
-                
-                // Ouvrir le client de messagerie par défaut
-                window.location.href = mailtoLink;
-                
-                // Réinitialiser le formulaire
-                contactForm.reset();
-                
-                // Afficher un message de confirmation
-                alert('Votre message a été préparé. Veuillez vérifier votre client de messagerie pour l\'envoyer.');
-            });
-        });
-    </script>
+<!-- SKILLS -->
+<section id="skills">
+  <div class="s-label reveal" data-i18n="s2.label">02 / Savoir-faire</div>
+  <h2 class="s-title reveal d1" data-i18n="s2.title">Competences techniques</h2>
+  <div class="sk-intro reveal d2"><p data-i18n="s2.intro">Developpeur web, designer graphique, administrateur systeme et expert bureautique. Actuellement en apprentissage des reseaux et de la cybersecurite.</p></div>
+
+  <div class="sk-cat-label reveal d2" data-i18n="skcat.dev">Developpement</div>
+  <div class="sk-grid reveal d3">
+    <div class="sk-card"><img class="sk-img" src="https://img.icons8.com/color/48/html-5--v1.png" alt="HTML5" loading="lazy"><span class="sk-nm">HTML5</span></div>
+    <div class="sk-card"><img class="sk-img" src="https://img.icons8.com/color/48/css3.png" alt="CSS3" loading="lazy"><span class="sk-nm">CSS3</span></div>
+    <div class="sk-card"><img class="sk-img" src="https://img.icons8.com/color/48/javascript--v1.png" alt="JavaScript" loading="lazy"><span class="sk-nm">JavaScript</span></div>
+    <div class="sk-card"><img class="sk-img" src="https://media-assets.arep.co/promoter/5762/78c3807b-0cdc-4ca9-984c-837d7de82f14-campaign-image.jpg" alt="Frameworks" loading="lazy"><span class="sk-nm" data-i18n="sk.fw">Autres frameworks</span></div>
+    <div class="sk-card"><img class="sk-img" src="https://img.icons8.com/color/48/python--v1.png" alt="Python" loading="lazy"><span class="sk-nm">Python</span></div>
+    <div class="sk-card"><img class="sk-img" src="https://img.icons8.com/color/48/c-plus-plus-logo.png" alt="C++" loading="lazy"><span class="sk-nm">C++</span></div>
+  </div>
+
+  <div class="sk-cat-label reveal d2" data-i18n="skcat.infra">Infrastructure &amp; Outils</div>
+  <div class="sk-grid reveal d3">
+    <div class="sk-card"><img class="sk-img" src="https://img.icons8.com/color/48/linux.png" alt="Linux" loading="lazy"><span class="sk-nm">Linux</span></div>
+    <div class="sk-card"><i class="fab fa-github sk-fa"></i><span class="sk-nm">GitHub</span></div>
+    <div class="sk-card"><img class="sk-img" src="https://img.icons8.com/color/48/supabase.png" alt="Supabase" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><i class="fas fa-bolt sk-fa" style="display:none"></i><span class="sk-nm">Supabase</span></div>
+    <div class="sk-card"><img class="sk-img" src="https://img.icons8.com/color/48/mysql-logo.png" alt="MySQL" loading="lazy"><span class="sk-nm">MySQL / XAMPP</span></div>
+    <div class="sk-card"><img class="sk-img" src="https://img.icons8.com/color/48/wordpress.png" alt="WordPress" loading="lazy"><span class="sk-nm">WordPress</span></div>
+    <div class="sk-card"><img class="sk-img" src="https://images.seeklogo.com/logo-png/31/2/apache-logo-png_seeklogo-314278.png" alt="Apache 2" loading="lazy"><span class="sk-nm">Apache 2</span></div>
+  </div>
+
+  <div class="sk-cat-label reveal d2" data-i18n="skcat.design">Design graphique</div>
+  <div class="sk-grid reveal d3">
+    <div class="sk-card"><img class="sk-img" src="https://img.icons8.com/color/48/adobe-illustrator.png" alt="Illustrator" loading="lazy"><span class="sk-nm">Adobe Illustrator</span></div>
+    <div class="sk-card"><img class="sk-img" src="https://img.icons8.com/color/48/adobe-indesign.png" alt="InDesign" loading="lazy"><span class="sk-nm">Adobe InDesign</span></div>
+  </div>
+
+  <div class="sk-cat-label reveal d2" data-i18n="skcat.prod">Productivite</div>
+  <div class="sk-grid reveal d3">
+    <div class="sk-card"><img class="sk-img" src="https://img.icons8.com/color/48/microsoft-office-2019.png" alt="Pack Office" loading="lazy"><span class="sk-nm">Pack Microsoft Office</span></div>
+    <div class="sk-card"><img class="sk-img" src="https://img.icons8.com/color/48/google-colab.png" alt="Google Colab" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><i class="fab fa-google sk-fa" style="display:none"></i><span class="sk-nm">Google Colab</span></div>
+    <div class="sk-card"><img class="sk-img" src="https://img.icons8.com/color/48/zoom.png" alt="Zoom" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><i class="fas fa-video sk-fa" style="display:none"></i><span class="sk-nm">Zoom</span></div>
+    <div class="sk-card"><img class="sk-img" src="https://img.icons8.com/color/48/slack-new.png" alt="Slack" loading="lazy"><span class="sk-nm">Slack</span></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="s-label reveal" data-i18n="s3.label">03 / Parcours</div>
+  <h2 class="s-title reveal d1" data-i18n="s3.title">Experiences professionnelles</h2>
+  <div class="tl" id="tl">
+    <div class="tl-item reveal d2">
+      <div class="tl-dot"></div>
+      <div class="tl-yr">2025</div>
+      <div class="tl-title" data-i18n="exp1.title">Assistant de Direction</div>
+      <div class="tl-org">Residence Hutamac</div>
+      <div class="tl-desc" data-i18n="exp1.desc">Gestion administrative, coordination des activites de direction, suivi des dossiers et communication interne et externe.</div>
+    </div>
+    <div class="tl-item reveal d2">
+      <div class="tl-dot"></div>
+      <div class="tl-yr">2024</div>
+      <div class="tl-title" data-i18n="exp2.title">Operateur de Saisie &amp; Designer de Documents</div>
+      <div class="tl-org">Freelance</div>
+      <div class="tl-desc" data-i18n="exp2.desc">Conception et mise en forme de documents professionnels, saisie de donnees, creation de supports visuels sous Adobe Illustrator et InDesign.</div>
+    </div>
+    <div class="tl-item reveal d3">
+      <div class="tl-dot"></div>
+      <div class="tl-yr">2024</div>
+      <div class="tl-title" data-i18n="exp3.title">Agent de Prospection</div>
+      <div class="tl-org">SMECC Mahajanga</div>
+      <div class="tl-desc" data-i18n="exp3.desc">Prospection commerciale, gestion de la relation client et analyse du marche local.</div>
+    </div>
+    <div class="tl-item reveal d4">
+      <div class="tl-dot"></div>
+      <div class="tl-yr">2023</div>
+      <div class="tl-title" data-i18n="exp5.title">Volontaire — Projet Aro Aina</div>
+      <div class="tl-org">Croix Rouge Malgache</div>
+      <div class="tl-desc" data-i18n="exp5.desc">Sensibilisation communautaire et accompagnement des beneficiaires dans le cadre du projet humanitaire Aro Aina.</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="s-label reveal" data-i18n="s4.label">04 / Formation</div>
+  <h2 class="s-title reveal d1" data-i18n="s4.title">Parcours academique</h2>
+  <div class="edu-grid">
+    <div class="edu-card reveal d2"><div class="edu-yr">2025 — 2026</div><div class="edu-title" data-i18n="edu1.title">Informatique Appliquee</div><div class="edu-inst" data-i18n="edu1.inst">Universite des Mascareignes (UDM) — Rose Hill, Ile Maurice</div></div>
+    <div class="edu-card reveal d2"><div class="edu-yr">2025</div><div class="edu-title" data-i18n="edu2.title">Agent de Call Center &amp; Anglais Professionnel</div><div class="edu-inst">Polyglote — Ile Maurice</div></div>
+    <div class="edu-card reveal d3"><div class="edu-yr">2023</div><div class="edu-title" data-i18n="edu3.title">Gestion Financiere</div><div class="edu-inst">Projet HARIVOLA — Madagascar</div></div>
+    <div class="edu-card reveal d3"><div class="edu-yr">2023</div><div class="edu-title" data-i18n="edu4.title">Montage de Projet</div><div class="edu-inst">FAAVORIF Madagascar</div></div>
+    <div class="edu-card reveal d4"><div class="edu-yr">2021</div><div class="edu-title">DELF B2</div><div class="edu-inst">Alliance Francaise — Madagascar</div></div>
+    <div class="edu-card reveal d4"><div class="edu-yr">2020 — 2021</div><div class="edu-title" data-i18n="edu6.title">Baccalaureat Serie D</div><div class="edu-inst">Lycee Notre Dame — Mahajanga, Madagascar</div></div>
+  </div>
+</section>
+
+<!-- LANGUAGES -->
+<section id="languages">
+  <div class="s-label reveal" data-i18n="s5.label">05 / Langues</div>
+  <h2 class="s-title reveal d1" data-i18n="s5.title">Competences linguistiques</h2>
+  <div class="lang-grid" id="lang-grid">
+    <div class="lang-item reveal d2"><div class="lang-head"><span class="lang-nm">Malgache</span><span class="lang-lvl" data-i18n="lang.native">Langue maternelle</span></div><div class="lang-track"><div class="lang-fill" data-w="100"></div></div></div>
+    <div class="lang-item reveal d2"><div class="lang-head"><span class="lang-nm">Francais</span><span class="lang-lvl">DELF B2</span></div><div class="lang-track"><div class="lang-fill" data-w="100"></div></div></div>
+    <div class="lang-item reveal d3"><div class="lang-head"><span class="lang-nm">Anglais</span><span class="lang-lvl" data-i18n="lang.intermediate">Intermediaire</span></div><div class="lang-track"><div class="lang-fill" data-w="60"></div></div></div>
+    <div class="lang-item reveal d3"><div class="lang-head"><span class="lang-nm">Italien</span><span class="lang-lvl" data-i18n="lang.basic">Notions</span></div><div class="lang-track"><div class="lang-fill" data-w="40"></div></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="s-label reveal" data-i18n="s6.label">06 / Contact</div>
+  <div class="ct-grid">
+    <div>
+      <h2 class="ct-head reveal d1">
+        <span data-i18n="ct.head">Travaillons</span><br>
+        <em data-i18n="ct.head2">ensemble</em>
+      </h2>
+      <a href="mailto:harenasergioasondrazaniaina@gmail.com" class="ct-email-btn reveal d2">
+        <i class="fas fa-envelope"></i>
+        <span data-i18n="ct.email">Envoyer un email</span>
+      </a>
+      <div class="ct-links">
+        <div class="ct-link reveal d2"><div class="ct-icon"><i class="fas fa-phone"></i></div><span class="ct-txt">+230 57 16 46 27</span></div>
+        <a href="https://wa.me/23057164627" target="_blank" rel="noopener" class="ct-link reveal d3"><div class="ct-icon"><i class="fab fa-whatsapp"></i></div><span class="ct-txt">WhatsApp — +230 57 16 46 27</span></a>
+        <div class="ct-link reveal d4"><div class="ct-icon"><i class="fas fa-map-marker-alt"></i></div><span class="ct-txt">Petit Verger Pointe Aux Sables, Ile Maurice</span></div>
+      </div>
+      <div class="soc-row reveal d5">
+        <a href="https://linkedin.com/in/harenasergio" target="_blank" rel="noopener" class="soc-ic"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.instagram.com/sergioharena" target="_blank" rel="noopener" class="soc-ic"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/sergioharena" target="_blank" rel="noopener" class="soc-ic"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://github.com/sergix-007" target="_blank" rel="noopener" class="soc-ic"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+    <div class="ct-form-wrap reveal d2">
+      <div class="ct-form-title" data-i18n="ct.form.title">Formulaire de contact</div>
+      <div class="f-row">
+        <label class="f-lbl" for="fs" data-i18n="ct.subj">Objet</label>
+        <input type="text" class="f-in" id="fs" data-i18n-ph="ct.subj.ph" placeholder="Sujet de votre message">
+      </div>
+      <div class="f-row">
+        <label class="f-lbl" for="fm" data-i18n="ct.msg">Message</label>
+        <textarea class="f-ta" id="fm" data-i18n-ph="ct.msg.ph" placeholder="Votre message..."></textarea>
+      </div>
+      <button class="btn-sub" id="fsub" data-i18n="ct.send">Envoyer</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-nm">ASONDRAZANIAINA Harena Asondrotra Sergio</div>
+  <div class="ft-copy">&copy; <span id="yr"></span> &mdash; Ile Maurice &mdash; Portfolio PWA</div>
+</footer>
+
+<script>
+document.documentElement.classList.remove('no-js');
+
+/* ── TRANSLATIONS ── */
+const T = {
+  fr: {
+    'loading':'Chargement',
+    'nav.about':'Profil','nav.skills':'Competences','nav.exp':'Experience','nav.edu':'Formation','nav.contact':'Contact',
+    'hero.tag':'Informaticien · Designer · Ile Maurice',
+    'hero.desc':'Etudiant en Informatique Appliquee a l\'UDM Rose Hill, passionne par le developpement web, la gestion de donnees et l\'administration numerique. Rigoureux, creatif et oriente solutions.',
+    'hero.cta1':'Me contacter','hero.cta2':'Voir mes competences','hero.badge':'UDM Rose Hill · 2025','scroll':'Decouvrir',
+    's1.label':'01 / Profil','s1.title':'A propos de moi',
+    's1.text':'Operateur de saisie et developpeur web en formation, je maitrise aussi bien les outils bureautiques avances que les technologies du web moderne.',
+    'tag.teamwork':'Travail en equipe','tag.rigorous':'Rigoureux','tag.creative':'Creatif','tag.punctual':'Ponctuel','tag.patient':'Patient','tag.relational':'Sens du relationnel','tag.adaptable':'Adaptable',
+    'lbl.loc':'Localisation','lbl.edu':'Formation actuelle','lbl.cert':'Certification','lbl.avail':'Disponibilite','lbl.phone':'Telephone',
+    'avail':'Stage & CDI — Immediatement',
+    's2.label':'02 / Savoir-faire','s2.title':'Competences techniques','s2.intro':'Developpeur web, designer graphique, administrateur systeme et expert bureautique.',
+    'skcat.dev':'Developpement','skcat.infra':'Infrastructure & Outils','skcat.design':'Design graphique','skcat.prod':'Productivite','sk.fw':'Autres frameworks',
+    's3.label':'03 / Parcours','s3.title':'Experiences professionnelles',
+    'exp1.title':'Assistant de Direction','exp1.desc':'Gestion administrative, coordination des activites de direction, suivi des dossiers et communication interne et externe.',
+    'exp2.title':'Operateur de Saisie & Designer de Documents','exp2.desc':'Conception et mise en forme de documents professionnels, saisie de donnees, creation de supports visuels sous Adobe Illustrator et InDesign.',
+    'exp3.title':'Agent de Prospection','exp3.desc':'Prospection commerciale, gestion de la relation client et analyse du marche local.',
+    'exp4.title':'Assistant de Personnel','exp4.desc':'Gestion des ressources humaines, traitement des dossiers du personnel et appui administratif.',
+    'exp5.title':'Volontaire — Projet Aro Aina','exp5.desc':'Sensibilisation communautaire et accompagnement des beneficiaires dans le cadre du projet humanitaire Aro Aina.',
+    's4.label':'04 / Formation','s4.title':'Parcours academique',
+    'edu1.title':'Informatique Appliquee','edu1.inst':'Universite des Mascareignes (UDM) — Rose Hill, Ile Maurice',
+    'edu2.title':'Agent de Call Center & Anglais Professionnel','edu3.title':'Gestion Financiere','edu4.title':'Montage de Projet','edu6.title':'Baccalaureat Serie D',
+    's5.label':'05 / Langues','s5.title':'Competences linguistiques',
+    'lang.native':'Langue maternelle','lang.intermediate':'Intermediaire','lang.basic':'Notions',
+    's6.label':'06 / Contact','ct.head':'Travaillons','ct.head2':'ensemble','ct.email':'Envoyer un email',
+    'ct.form.title':'Formulaire de contact','ct.subj':'Objet','ct.subj.ph':'Sujet de votre message','ct.msg':'Message','ct.msg.ph':'Votre message...','ct.send':'Envoyer',
+    'typed':['Developpeur Web','Etudiant en Informatique','Designer Graphique','Gestionnaire de Donnees','Assistant Administratif']
+  },
+  en: {
+    'loading':'Loading',
+    'nav.about':'Profile','nav.skills':'Skills','nav.exp':'Experience','nav.edu':'Education','nav.contact':'Contact',
+    'hero.tag':'IT Specialist · Designer · Mauritius',
+    'hero.desc':'Computer Science student at UDM Rose Hill, passionate about web development, data management and digital administration. Rigorous, creative and solution-oriented.',
+    'hero.cta1':'Contact me','hero.cta2':'View my skills','hero.badge':'UDM Rose Hill · 2025','scroll':'Discover',
+    's1.label':'01 / Profile','s1.title':'About me',
+    's1.text':'Data entry operator and web developer in training, I master both advanced office tools and modern web technologies.',
+    'tag.teamwork':'Team player','tag.rigorous':'Rigorous','tag.creative':'Creative','tag.punctual':'Punctual','tag.patient':'Patient','tag.relational':'People skills','tag.adaptable':'Adaptable',
+    'lbl.loc':'Location','lbl.edu':'Current Education','lbl.cert':'Certification','lbl.avail':'Availability','lbl.phone':'Phone',
+    'avail':'Internship & Full-time — Immediately',
+    's2.label':'02 / Expertise','s2.title':'Technical Skills','s2.intro':'Web developer, graphic designer, system administrator and office expert.',
+    'skcat.dev':'Development','skcat.infra':'Infrastructure & Tools','skcat.design':'Graphic Design','skcat.prod':'Productivity','sk.fw':'Other frameworks',
+    's3.label':'03 / Career','s3.title':'Professional Experience',
+    'exp1.title':'Executive Assistant','exp1.desc':'Administrative management, coordination of executive activities, file tracking and internal and external communication.',
+    'exp2.title':'Data Entry Operator & Document Designer','exp2.desc':'Design and formatting of professional documents, data entry, creation of visual materials using Adobe Illustrator and InDesign.',
+    'exp3.title':'Sales Agent','exp3.desc':'Commercial prospecting, customer relationship management and local market analysis.',
+    'exp4.title':'HR Assistant','exp4.desc':'Human resources management, processing of staff files and administrative support.',
+    'exp5.title':'Volunteer — Aro Aina Project','exp5.desc':'Community awareness and beneficiary support as part of the Aro Aina humanitarian project.',
+    's4.label':'04 / Education','s4.title':'Academic Background',
+    'edu1.title':'Applied Computer Science','edu1.inst':'University of Mascareignes (UDM) — Rose Hill, Mauritius',
+    'edu2.title':'Call Center Agent & Professional English','edu3.title':'Financial Management','edu4.title':'Project Management','edu6.title':'High School Diploma (Series D)',
+    's5.label':'05 / Languages','s5.title':'Language Skills',
+    'lang.native':'Mother tongue','lang.intermediate':'Intermediate','lang.basic':'Basic',
+    's6.label':'06 / Contact','ct.head':"Let's work",'ct.head2':'together','ct.email':'Send an email',
+    'ct.form.title':'Contact form','ct.subj':'Subject','ct.subj.ph':'Subject of your message','ct.msg':'Message','ct.msg.ph':'Your message...','ct.send':'Send',
+    'typed':['Web Developer','Computer Science Student','Graphic Designer','Data Manager','Administrative Assistant']
+  }
+};
+
+let lang = localStorage.getItem('lang') || 'fr';
+let typedPhrases = T[lang]['typed'];
+
+function applyLang(l) {
+  lang = l;
+  localStorage.setItem('lang', l);
+  document.documentElement.lang = l;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const v = T[l][el.dataset.i18n];
+    if(v && typeof v === 'string') el.textContent = v;
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const k = el.getAttribute('data-i18n-ph');
+    const v = T[l][k];
+    if(v) el.placeholder = v;
+  });
+  document.getElementById('lang-btn').textContent = l === 'fr' ? 'EN' : 'FR';
+  typedPhrases = T[l]['typed'];
+}
+
+/* ── THEME ── */
+const html = document.documentElement;
+if(localStorage.getItem('theme') === 'light') html.classList.add('light');
+
+function toggleTheme() {
+  html.classList.toggle('light');
+  const isLight = html.classList.contains('light');
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  document.getElementById('theme-btn').innerHTML = isLight ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+}
+if(html.classList.contains('light')) document.getElementById('theme-btn').innerHTML = '<i class="fas fa-moon"></i>';
+
+document.getElementById('theme-btn').addEventListener('click', toggleTheme);
+document.getElementById('lang-btn').addEventListener('click', () => applyLang(lang === 'fr' ? 'en' : 'fr'));
+
+/* ── CURSOR ── */
+const cd = document.getElementById('cd'), cr = document.getElementById('cr');
+let mx=0, my=0, rx=0, ry=0;
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cd.style.left=mx+'px'; cd.style.top=my+'px'; });
+(function raf(){ rx+=(mx-rx)*.1; ry+=(my-ry)*.1; cr.style.left=rx+'px'; cr.style.top=ry+'px'; requestAnimationFrame(raf); })();
+document.querySelectorAll('a,button,.tag,.edu-card,.tl-item,.ct-link,.soc-ic,.sk-card').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('hov'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('hov'));
+});
+
+/* ── PARTICLES ── */
+(function(){
+  const c = document.getElementById('ptc'), x = c.getContext('2d');
+  let W, H, P;
+  function resize(){ W=c.width=window.innerWidth; H=c.height=window.innerHeight; }
+  function mk(){ return {x:Math.random()*W, y:Math.random()*H, vx:(Math.random()-.5)*.28, vy:(Math.random()-.5)*.28, r:Math.random()*1.2+.3, a:Math.random()*.3+.08}; }
+  function isLight(){ return document.documentElement.classList.contains('light'); }
+  function frame(){
+    x.clearRect(0,0,W,H);
+    const col = isLight() ? '0,0,0' : '255,255,255';
+    P.forEach(p => {
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0||p.x>W||p.y<0||p.y>H){ p.x=Math.random()*W; p.y=Math.random()*H; }
+      x.beginPath(); x.arc(p.x,p.y,p.r,0,6.28);
+      x.fillStyle=`rgba(${col},${p.a})`; x.fill();
+    });
+    for(let i=0;i<P.length;i++) for(let j=i+1;j<P.length;j++){
+      const dx=P[i].x-P[j].x, dy=P[i].y-P[j].y, d=Math.sqrt(dx*dx+dy*dy);
+      if(d<110){ x.beginPath(); x.moveTo(P[i].x,P[i].y); x.lineTo(P[j].x,P[j].y); x.strokeStyle=`rgba(${col},${.03*(1-d/110)})`; x.lineWidth=.5; x.stroke(); }
+    }
+    requestAnimationFrame(frame);
+  }
+  resize(); P=Array.from({length:75},mk); frame();
+  window.addEventListener('resize', resize);
+})();
+
+/* ── TYPED ── */
+(function(){
+  let pi=0, ci=0, del=false;
+  const el = document.getElementById('typed');
+  function run(){
+    const ph = typedPhrases[pi % typedPhrases.length];
+    if(!del){ el.textContent=ph.slice(0,++ci); if(ci===ph.length){del=true;return setTimeout(run,2000);} setTimeout(run,80); }
+    else{ el.textContent=ph.slice(0,--ci); if(ci===0){del=false;pi++;return setTimeout(run,400);} setTimeout(run,40); }
+  }
+  setTimeout(run, 4800);
+})();
+
+/* ── NAV ── */
+const navEl=document.getElementById('nav'), burger=document.getElementById('burger'), mobnav=document.getElementById('mobnav');
+const nls=document.querySelectorAll('.nl'), secs=document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  navEl.classList.toggle('scr', scrollY>20);
+  let cur=''; secs.forEach(s => { if(scrollY>=s.offsetTop-220) cur=s.id; });
+  nls.forEach(l => l.classList.toggle('act', l.getAttribute('href')==='#'+cur));
+});
+burger.addEventListener('click', () => {
+  burger.classList.toggle('open'); mobnav.classList.toggle('open');
+  document.body.style.overflow = mobnav.classList.contains('open') ? 'hidden' : '';
+});
+document.querySelectorAll('.ml').forEach(l => l.addEventListener('click', () => {
+  burger.classList.remove('open'); mobnav.classList.remove('open'); document.body.style.overflow='';
+}));
+
+/* ── LOADER ── */
+window.addEventListener('load', () => {
+  applyLang(lang);
+  setTimeout(() => { document.getElementById('loader').classList.add('out'); initReveal(); }, 4200);
+});
+
+/* ── REVEAL ── */
+function initReveal(){
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+  }, {threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  const langObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(!e.isIntersecting) return;
+      e.target.querySelectorAll('.lang-fill').forEach((f,i) => setTimeout(() => { f.style.width=f.dataset.w+'%'; }, i*80));
+      langObs.unobserve(e.target);
+    });
+  }, {threshold:.25});
+  const lg = document.getElementById('lang-grid');
+  if(lg) langObs.observe(lg);
+
+  const tlObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+  }, {threshold:.1});
+  const tl = document.getElementById('tl');
+  if(tl) tlObs.observe(tl);
+}
+
+/* ── FOOTER YEAR ── */
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ── CONTACT FORM ── */
+document.getElementById('fsub').addEventListener('click', () => {
+  const s = document.getElementById('fs').value.trim();
+  const m = document.getElementById('fm').value.trim();
+  if(!m) return;
+  window.location.href = `mailto:harenasergioasondrazaniaina@gmail.com?subject=${encodeURIComponent(s||'Contact Portfolio')}&body=${encodeURIComponent(m)}`;
+  document.getElementById('fs').value = '';
+  document.getElementById('fm').value = '';
+});
+
+/* ── SERVICE WORKER ── */
+if('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(()=>{}));
+</script>
 </body>
 </html>

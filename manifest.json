@@ -1,0 +1,36 @@
+{
+  "name": "Sergio — Portfolio",
+  "short_name": "Sergio",
+  "description": "Portfolio de ASONDRAZANIAINA Harena Asondrotra Sergio — Informaticien, Designer, Ile Maurice",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "categories": ["portfolio", "business"],
+  "icons": [
+    {
+      "src": "logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Competences",
+      "url": "./index.html#skills"
+    },
+    {
+      "name": "Contact",
+      "url": "./index.html#contact"
+    }
+  ]
+}
