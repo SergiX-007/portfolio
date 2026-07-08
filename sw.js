@@ -1,4 +1,4 @@
-const CACHE = 'sergix-v1';
+const CACHE = 'sergix-v2';
 const SHELL = ['./index.html', './manifest.json'];
 
 self.addEventListener('install', e => {
